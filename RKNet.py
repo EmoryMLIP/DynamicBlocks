@@ -19,15 +19,11 @@ import sys
 
 from modules.ConnectingLayer import ConnectingLayer
 from modules.rk4 import rk4
-from modules.rk4Batch import rk4Batch
 from modules.rk1 import rk1
-from modules.rk2 import rk2
 from modules.TvNorm import TvNorm
 from modules.DoubleSymLayer import DoubleSymLayer
 from modules.DoubleLayer import DoubleLayer
-from modules.PreactDoubleLayer import PreactDoubleLayer
 
-from convertWtoLinear import *
 from modules.ClippedModule import *
 
 class RKNet(ClippedModule):
@@ -126,11 +122,6 @@ class RKNet(ClippedModule):
             else:
                 # average each channel
                 x = F.avg_pool2d(x, x.shape[2:4])
-
-        if hasattr(self,'W'): # if using a deprecated version of RKNet, convert to new version
-            print('Using outdated version of RKNet. REcommended: update the model to '
-                  'new form via updateTrainedModel in convertWtoLinear.py')
-            convertWtoLinear(self)
 
         x = x.view(x.size(0), -1)
         x = self.linear(x)
