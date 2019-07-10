@@ -569,7 +569,7 @@ def runDefault():
 
 def runDefaultRegularized():
     runRKNet( sDataset='stl10', sTitle = 'regularizedBN_RK1_Double', dynamicScheme=rk1, layer = DoubleLayer,
-            writeFile=True,regularization_param=0.01, checkpointing=False, gpu=1, dynamicParams=["Batch"])
+            writeFile=True,regularization_param=0.01, checkpointing=False, gpu=1, dynamicParams="Batch")
 
 
     # For Testing!!
